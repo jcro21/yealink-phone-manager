@@ -105,7 +105,7 @@ func main() {
 		}
 	}()
 
-	fmt.Println("Starting server...")
+	fmt.Printf("Starting server on port %s", addr)
 
 	if os.Getenv("TLS") == "true" {
 		s2 := &http.Server{
