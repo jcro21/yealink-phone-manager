@@ -7,7 +7,8 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"strconv"
+
+	// "strconv"
 	"syscall"
 
 	rice "github.com/GeertJohan/go.rice"
@@ -18,8 +19,8 @@ import (
 
 // Declare globals here
 var (
-	addr              string
-	diskCriticalBytes int
+	addr string
+	// diskCriticalBytes int
 )
 
 var (
@@ -35,11 +36,11 @@ func init() {
 		addr = ":3000"
 	}
 
-	if i, err := strconv.Atoi(os.Getenv("DISK_CRITICAL_BYTES")); err != nil {
-		diskCriticalBytes = 104900000 // 100mb
-	} else {
-		diskCriticalBytes = i
-	}
+	// if i, err := strconv.Atoi(os.Getenv("DISK_CRITICAL_BYTES")); err != nil {
+	// 	diskCriticalBytes = 104900000 // 100mb
+	// } else {
+	// 	diskCriticalBytes = i
+	// }
 
 	// these have to be here for rice to work
 	_, _ = rice.FindBox("static")

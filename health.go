@@ -1,17 +1,16 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net/http"
-	"os"
-	"syscall"
+	// "os"
+	// "syscall"
 )
 
 func (a *appContext) handleAPIHealth(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("content-type", "application/json")
 
-	err := a.health(r.Context())
+	err := a.health()
 	if err != nil {
 		rw.WriteHeader(500)
 		rw.Write([]byte(fmt.Sprintf("{\"error\": \"%+v\"}", err)))
@@ -20,25 +19,25 @@ func (a *appContext) handleAPIHealth(rw http.ResponseWriter, r *http.Request) {
 	rw.Write([]byte(fmt.Sprintf("{\"version\": \"%s\"}", canary)))
 }
 
-func (a *appContext) health(ctx context.Context) error {
-	var stat syscall.Statfs_t
+func (a *appContext) health() error {
+	// var stat syscall.Statfs_t
 
-	wd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
+	// wd, err := os.Getwd()
+	// if err != nil {
+	// 	return err
+	// }
 
-	err = syscall.Statfs(wd, &stat)
-	if err != nil {
-		return err
-	}
+	// err = syscall.Statfs(wd, &stat)
+	// if err != nil {
+	// 	return err
+	// }
 
 	// Available blocks * size per block = available space in bytes
-	freeBytes := int(stat.Bavail * uint64(stat.Bsize))
+	// freeBytes := int(stat.Bavail * uint64(stat.Bsize))
 
-	if freeBytes < diskCriticalBytes {
-		return fmt.Errorf("disk space critically low")
-	}
+	// if freeBytes < diskCriticalBytes {
+	// 	return fmt.Errorf("disk space critically low")
+	// }
 
 	return nil
 }
