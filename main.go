@@ -33,7 +33,7 @@ func init() {
 	// Assign globals here
 	addr = os.Getenv("ADDR")
 	if addr == "" {
-		addr = ":80"
+		addr = ":http"
 	}
 
 	// if i, err := strconv.Atoi(os.Getenv("DISK_CRITICAL_BYTES")); err != nil {

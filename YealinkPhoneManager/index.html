@@ -1,0 +1,77 @@
+<!doctype html>
+	<html>
+	  <head>
+		<title>Phone Manager</title>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            section {
+                margin-bottom: 1rem;
+            }
+            summary {
+                padding: 0.25rem;
+                background: lightblue;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            summary:hover {
+                background: aliceblue;
+            }
+            .linekeys {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(16rem, max-content));
+                grid-auto-flow: row;
+                gap: 0.5rem;
+                counter-reset: ctr 0;
+                padding-top: 0.5rem;
+            }
+            .linekey {
+                border: grey 1px solid;
+                border-radius: 5px;
+                padding: 0.25rem;
+                counter-increment: ctr 1;
+                text-align: end;
+            }
+            .linekey::before {
+                content: "#" counter(ctr) " ";
+                vertical-align: middle;
+            }
+            .linekey > input {
+                width: 8rem;
+            }
+            .linekey > input + input {
+                width: 3rem;
+            }
+            .advancedSettings {
+                /* keep */
+            }
+            .advancedSettings > label {
+                display: block;
+            }
+        </style>
+	  </head>
+	  <body>
+		<h1>Yealink Phone Manager</h1>
+		<p>Edit the settings below and click "Save Settings". The changes will be applied to the phones roughly every 3 hours, or the next time they reboot.</p>
+        <form action="/api/v1/phone/settings" method="post">
+            <section>
+                <details open>
+                    <summary>Speed-dial keys</summary>
+                    <div class="linekeys">
+                        {{lineKeys}}
+                    </div>
+                </details>
+            </section>
+            <section>
+                <details class="advancedSettings">
+                    <summary>Advanced Settings (DO NOT TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING)</summary>
+                    {{advancedSettings}}
+                </details>
+            </section>
+
+            <input type="submit" value="Save Settings" />
+        </form>
+	  </body>
+	</html>
