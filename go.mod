@@ -6,7 +6,7 @@ require (
 	github.com/GeertJohan/go.rice v1.0.3
 	github.com/didip/tollbooth v4.0.2+incompatible
 	github.com/gorilla/mux v1.8.1
-	github.com/rs/cors v1.10.1
+	github.com/rs/cors v1.11.0
 	github.com/sebest/xff v0.0.0-20210106013422-671bd2870b3a
 	github.com/timewasted/go-accept-headers v0.0.0-20130320203746-c78f304b1b09
 	github.com/urfave/negroni v1.0.0
